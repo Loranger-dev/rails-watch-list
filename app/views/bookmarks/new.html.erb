@@ -1,0 +1,21 @@
+<div class="container py-4" style="max-width: 500px;">
+  <h1>Ajouter un film à "<%= @list.name %>"</h1>
+
+  <%= form_with model: [@list, @bookmark] do |f| %>
+    <div class="mb-3">
+      <%= f.label :movie_id, "Choisir un film" %>
+      <%= f.select :movie_id,
+            @movies.map { |m| [m.title, m.id] },
+            { prompt: "-- Sélectionne un film --" },
+            { class: "form-select" } %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :comment, "Commentaire" %>
+      <%= f.text_area :comment, class: "form-control", rows: 3 %>
+    </div>
+
+    <%= f.submit "Ajouter", class: "btn btn-success" %>
+    <%= link_to "Annuler", list_path(@list), class: "btn btn-outline-secondary ms-2" %>
+  <% end %>
+</div>

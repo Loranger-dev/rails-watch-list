@@ -1,0 +1,21 @@
+<div class="container py-4" style="max-width: 500px;">
+  <h1>Nouvelle liste</h1>
+
+  <% if @list.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        <% @list.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: @list do |f| %>
+    <div class="mb-3">
+      <%= f.label :name, "Nom de la liste" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Ex: Dramas, Classics..." %>
+    </div>
+    <%= f.submit "Créer", class: "btn btn-primary" %>
+  <% end %>
+</div>
